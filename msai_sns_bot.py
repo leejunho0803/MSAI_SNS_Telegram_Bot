@@ -44,13 +44,13 @@ bot.sendMessage(chat_id = chat_id or '1781255293', text = "Elon Musk's Twitter r
     And if you enter the '/task', you can check various functions by pressing the button.")
 
 
-
 '''
 Start function
 '''
 #step1.Updater, Dispatcher
 updater = Updater(token = bot_token, use_context=True)
 dispatcher = updater.dispatcher
+
 
 #step2./start 
 def start(update, context):
@@ -65,8 +65,6 @@ dispatcher.add_handler(start_handler)
 
 #step5.Updater monitoring(polling)
 updater.start_polling()
-
-
 
 
 '''
@@ -89,6 +87,7 @@ def cmd_task_buttons(update, context):
         reply_markup = reply_markup
         )
 
+    
 def cb_button(update, context):
     query = update.callback_query
     data = query.data
@@ -124,6 +123,7 @@ def add_handler(cmd, func):
 def callback_handler(func):
     updater.dispatcher.add_handler(CallbackQueryHandler(func))
 
+    
 add_handler("task", cmd_task_buttons)
 callback_handler(cb_button)
 updater.start_polling
